@@ -12,6 +12,7 @@ class MenuItem extends FlxSpriteGroup
 	public var targetY:Float = 0;
 	public var week:FlxSprite;
 	public var flashingInt:Int = 0;
+	public var blockedInt:Int = 0;
 
 	public function new(x:Float, y:Float, weekNum:Int = 0)
 	{
@@ -21,10 +22,17 @@ class MenuItem extends FlxSpriteGroup
 	}
 
 	private var isFlashing:Bool = false;
+	private var isWeekBlocked:Bool = false;
 
 	public function startFlashing():Void
 	{
 		isFlashing = true;
+	}
+	
+	public function cannotEnter():Void
+	{
+		isFlashing = false;
+		isWeekBlocked = true;
 	}
 
 	// if it runs at 60fps, fake framerate will be 6
@@ -40,10 +48,15 @@ class MenuItem extends FlxSpriteGroup
 
 		if (isFlashing)
 			flashingInt += 1;
+		
+		if (isWeekBlocked)
+			blockedInt += 1;
 
 		if (flashingInt % fakeFramerate >= Math.floor(fakeFramerate / 2))
 			week.color = 0xFF33ffff;
+		elseif (blockedInt % fakeFramerate >= Math.floor(fakeFramerate / 2))
+			week.color = 0xFF0000;
 		else
-			week.color = FlxColor.WHITE;
+			week.color = FlxColor.WHITE; // does FlxColor support red? this would help a ton if it does!
 	}
 }
