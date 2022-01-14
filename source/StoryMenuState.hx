@@ -24,25 +24,28 @@ class StoryMenuState extends MusicBeatState
 
 	var weekData:Array<Dynamic> = [
 		['Tutorial'],
-		['Lounge', 'Cutey', 'Girl', 'Break-In', 'Lied-Too'],
-		['Work-Break', 'Withdraw-Moola', 'Shifts-Over', 'Nighttime-Robbery']
+		['Lounge', 'Cutey', 'Girl', 'Break-In', 'Lied-Too', 'Trans'],
+		['Break-Time', 'Withdraw-Moola', 'Shifts-Over', 'Nighttime-Robbery'],
+		['Another-Trans', 'Normalified']
 	];
 	var curDifficulty:Int = 2;
 
-	public static var weekUnlocked:Array<Bool> = [true, true, true];
+	public static var weekUnlocked:Array<Bool> = [true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['dad', 'bf', 'gf'],
 		['dad', 'bf', 'gf'],
-		['dad', 'bf', 'gf']
+		['dad', 'bf', 'gf'],
+		['spooky', 'bf', 'gf']
 	//      ['worker', 'fbf', 'fgf'] //BTW This is for 2.0!!
 	];
 
 	var weekNames:Array<String> = [
 		"The epic tutorial",
 		"Girls only lounge ft. carihyper!",
-	        "Furry only bank ft. dylan the hyper"
-//	        "Furry only house ft. furry coltin"
+	        "Furry only bank ft. dylan the hyper",
+		"Hypnotice"
+//	        "Furry only house ft. furry coltin" //BTW This if for 2.0
 	];
 
 	var txtWeekTitle:FlxText;
