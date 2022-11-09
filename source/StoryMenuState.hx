@@ -24,9 +24,9 @@ class StoryMenuState extends MusicBeatState
 
 	var weekData:Array<Dynamic> = [
 		['Tutorial'],
-		['Lounge', 'Cutey', 'Girl', 'Break-In', 'Lied-Too', 'Trans'],
+		['Lounge', 'Cutey', 'Girl', 'Break-In'],
 		['Break-Time', 'Withdraw-Moola', 'Shifts-Over', 'Nighttime-Robbery'],
-		['Another-Trans', 'Normalified']
+		["School-Blues", "Destroyed-Life", "Hard-Work", "Tiring-Day", "So-Cold"]
 	];
 	var curDifficulty:Int = 2;
 
@@ -37,14 +37,16 @@ class StoryMenuState extends MusicBeatState
 		['dad', 'bf', 'gf'],
 		['dad', 'bf', 'gf'],
 		['spooky', 'bf', 'gf']
-	//      ['worker', 'fbf', 'fgf'] //BTW This is for 2.0!!
+	//      ['female', 'fbf', 'fgf'] // BTW This is for 2.0!!
+	//      ['worker', 'fbf', 'fgf'] // BTW This is for 2.0!!
+	//      ['studentkidorsomething', 'fbf', 'fgf'] // BTW This is for 2.0!!
 	];
 
 	var weekNames:Array<String> = [
-		"The epic tutorial",
+		"The Tutor(ial) Session",
 		"Girls only lounge ft. carihyper!",
 	        "Furry only bank ft. dylan the hyper",
-		"Hypnotice"
+		"Furry Only School. FT. Landon Albee"
 //	        "Furry only house ft. furry coltin" //BTW This if for 2.0
 	];
 
@@ -77,7 +79,7 @@ class StoryMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		scoreText = new FlxText(10, 10, 0, "SCORE: 49324858", 36);
+		scoreText = new FlxText(10, 10, 0, "SCORE: FREDDY FAZBARS", 36);
 		scoreText.setFormat("VCR OSD Mono", 32);
 
 		txtWeekTitle = new FlxText(FlxG.width * 0.7, 10, 0, "", 32);
@@ -168,7 +170,7 @@ class StoryMenuState extends MusicBeatState
 		difficultySelectors = new FlxGroup();
 		add(difficultySelectors);
 
-		trace("Line 124");
+		trace("Line 173");
 
 		leftArrow = new FlxSprite(grpWeekText.members[0].x + grpWeekText.members[0].width + 10, grpWeekText.members[0].y + 10);
 		leftArrow.frames = ui_tex;
@@ -194,12 +196,12 @@ class StoryMenuState extends MusicBeatState
 		rightArrow.animation.play('idle');
 		difficultySelectors.add(rightArrow);
 
-		trace("Line 150");
+		trace("Line 199- OMG WE SO CLOSE TO 200!!");
 
 		add(yellowBG);
 		add(grpWeekCharacters);
 
-		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 32);
+		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, "Songs", 32);
 		txtTracklist.alignment = CENTER;
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xFFe55777;
@@ -210,14 +212,14 @@ class StoryMenuState extends MusicBeatState
 
 		updateText();
 
-		trace("Line 165");
+		trace("Line 215");
 
 		super.create();
 	}
 
 	override function update(elapsed:Float)
 	{
-		// scoreText.setFormat('VCR OSD Mono', 32);
+		trace("Line 222");
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
 
 		scoreText.text = "WEEK SCORE:" + lerpScore;
@@ -349,7 +351,7 @@ class StoryMenuState extends MusicBeatState
 
 		sprDifficulty.alpha = 0;
 
-		// USING THESE WEIRD VALUES SO THAT IT DOESNT FLOAT UP
+		//trace("The very current dif is " + curDifficulty);
 		sprDifficulty.y = leftArrow.y - 15;
 		intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);
 
@@ -394,7 +396,7 @@ class StoryMenuState extends MusicBeatState
 		grpWeekCharacters.members[0].animation.play(weekCharacters[curWeek][0]);
 		grpWeekCharacters.members[1].animation.play(weekCharacters[curWeek][1]);
 		grpWeekCharacters.members[2].animation.play(weekCharacters[curWeek][2]);
-		txtTracklist.text = "Tracks\n";
+		txtTracklist.text = "Songs\n";
 
 		switch (grpWeekCharacters.members[0].animation.curAnim.name)
 		{
