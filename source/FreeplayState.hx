@@ -27,6 +27,12 @@ class FreeplayState extends MusicBeatState
 	var diffText:FlxText;
 	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
+        var songColors:Array<FlxColor> = [
+		FlxColor.fromRGB(255, 0, 0),   // WEEK 1
+		FlxColor.fromRGB(132, 121, 2), // WEEK 2
+		FlxColor.fromRGB(48, 48, 48),    // WEEK 3
+		FlxColor.fromRGB(5, 12, 9)    // WEEK 4
+        ]; // def not stolen from fiver and bomb
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
@@ -62,19 +68,20 @@ class FreeplayState extends MusicBeatState
 		#end
 
 		if (StoryMenuState.weekUnlocked[2] || isDebug)
-			addWeek(['i-forgor'], 1, ['dad']);
+			addWeek(['Lounge', 'Cutey', 'Girl', 'Break-In'], 2, ['cari', 'cari', 'cari', 'carinightmare']);
 
-		if (StoryMenuState.weekUnlocked[2] || isDebug)
-			addWeek(['forgor'], 2, ['dad']);
+		if (StoryMenuState.weekUnlocked[3] || isDebug)
+			addWeek(['Break-Time', 'Withdraw-Moola', 'Shifts-Over', 'Nighttime-Robbery'], 3, ['worker', 'worker', 'worker', 'spookymonthrobberguy']);
 
-/*		if (StoryMenuState.weekUnlocked[3] || isDebug)
-			addWeek(['houses'], 3, ['spooky']);*/
+		if (StoryMenuState.weekUnlocked[4] || isDebug)
+			addWeek(['Secret'], 4, ['mom']);
 
 		// LOAD MUSIC
 
 		// LOAD CHARACTERS
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuBGBlue'));
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		bg.color = 0xFF4965FF;
 		add(bg);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
@@ -119,11 +126,14 @@ class FreeplayState extends MusicBeatState
 
 		// FlxG.sound.playMusic(Paths.music('title'), 0);
 		// FlxG.sound.music.fadeIn(2, 0, 0.8);
-		selector = new FlxText();
-
+		/*selector = new FlxText();
 		selector.size = 40;
 		selector.text = ">";
 		// add(selector);
+		selectoralt2 = new FlxText();
+		selectoralt2.size = 40;
+		selectoralt2.text = "<";
+		// add(selectoralt2); */
 
 		var swag:Alphabet = new Alphabet(1, 0, "swag");
 
@@ -248,10 +258,6 @@ class FreeplayState extends MusicBeatState
 
 	function changeSelection(change:Int = 0)
 	{
-		#if !switch
-		NGio.logEvent('Fresh');
-		#end
-
 		// NGio.logEvent('Fresh');
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
@@ -263,10 +269,11 @@ class FreeplayState extends MusicBeatState
 			curSelected = 0;
 
 		// selector.y = (70 * curSelected) + 30;
+		// selectoralt2.y = (-70 * curSelected) + 30;
 
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
-		// lerpScore = 0;
+		// lerpScore = intendedScore;
 		#end
 
 		#if PRELOAD_ALL
@@ -296,6 +303,7 @@ class FreeplayState extends MusicBeatState
 				// item.setGraphicSize(Std.int(item.width));
 			}
 		}
+	    FlxTween.color(bg, 0.25, bg.color, songColors[songs[curSelected].week]);
 	}
 }
 
